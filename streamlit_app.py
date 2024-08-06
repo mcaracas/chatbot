@@ -3,6 +3,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+import toml
 import streamlit as st
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -14,15 +15,20 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from openai import OpenAI
 
-# Use the provided OpenAI API key directly
-api_key = "sk-bjXNZ6cIvmZzegve_XofevTOpAj0jiAvybnFcP14TbT3BlbkFJ-pK86us7f2LZuFMD8cdpgoVI42HneXwU0DZ-BzTFkA"
+# Load the secrets from the specified path
+secrets_path = "/workspaces/chatbot/secrets.toml"
+secrets = toml.load(secrets_path)
+
+# Access the OpenAI API key from the loaded secrets
+api_key = secrets["openai_api_key"]
 
 # Initialize the OpenAI LLM with "GPT-4 Mini" model
 openai_llm = ChatOpenAI(api_key=api_key, model="gpt-4o-mini")
 
 st.title("📄 PDF Chatbot with RAG")
 st.write(
-    "Soy un asistente legal experto en el codigo laboral de Costa Rica"
+    "This app allows you to chat with a PDF document. It uses OpenAI's GPT-4 Mini model to generate responses "
+    "based on the content of the PDF."
 )
 
 # Set the file path directly
