@@ -15,7 +15,7 @@ from langchain.prompts import ChatPromptTemplate
 from openai import OpenAI
 
 # Use the provided OpenAI API key directly
-api_key = "sk-proj-cQlkDapuhEfEsThsjG8KT3BlbkFJM2knn3CmGPkFwkpx7E27"
+api_key = "sk-bjXNZ6cIvmZzegve_XofevTOpAj0jiAvybnFcP14TbT3BlbkFJ-pK86us7f2LZuFMD8cdpgoVI42HneXwU0DZ-BzTFkA"
 
 # Initialize the OpenAI LLM with "GPT-4 Mini" model
 openai_llm = ChatOpenAI(api_key=api_key, model="gpt-4o-mini")
